@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Карта мест хранения отходов</title>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function() {
+            ymaps.ready(init);
+
+            function init() {
+                var map = new ymaps.Map("map", {
+                    center: [54.529, 36.275],
+                    zoom: 12
+                });
+
+                var wasteStorageIcon = "{% static 'images/trash.svg' %}";
+
+                var wasteStorageData = {{ waste_storage|safe }};
+
+                wasteStorageData.forEach(function(storage) {
+                    var placemark = new ymaps.Placemark([storage.latitude, storage.longitude], {
+                        balloonContent: `
+                            <strong>${storage.city}, ${storage.street}, ${storage.house}</strong><br>
+                            Объем накопителя: ${storage.storage_volume} м3<br>
+                            Количество контейнеров: ${storage.container_count} шт.<br>
+                            Площадь: ${storage.area} м2<br>
+                            Сведения об используемом покрытии: ${storage.cover_info}<br>
+                            Источник образования ТКО: ${storage.waste_source_info}
+                        `
+                    }, {
+                        iconLayout: 'default#image',
+                        iconImageHref: wasteStorageIcon,
+                        iconImageSize: [30, 30],
+                        iconImageOffset: [-15, -30]
+                    });
+
+                    map.geoObjects.add(placemark);
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <h1>Карта мест хранения отходов</h1>
+    <div id="map" style="width: 60%; height: 400px;"></div>
+</body>
+</html>

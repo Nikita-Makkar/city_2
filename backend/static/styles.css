@@ -1,0 +1,79 @@
+.container {
+    position: relative;
+    max-width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.circle {
+    position: relative;
+    width: 10%; /* Диаметр круга, относительный к ширине контейнера */
+    height: 14%; /* Диаметр круга, относительный к ширине контейнера */
+    border-radius: 50%;
+    background-color: rgba(255, 0, 0, 0.5); /* Полупрозрачный красный цвет */
+    border: 2px solid rgba(255, 0, 0, 0.8); /* Цвет границы */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff; /* Цвет текста внутри круга */
+    font-size: 1vw; /* Размер шрифта относительно ширины экрана */
+    text-align: center;
+    padding: 5px;
+    box-sizing: border-box;
+    transform: translate(-50%, -50%); /* Центрирование круга относительно заданных координат */
+}
+
+.circle:hover {
+    background-color: rgba(255, 0, 0, 0.7); /* Более темный цвет при наведении */
+}
+
+
+.wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.map__wrapper {
+    max-width: 2000px;
+    position: relative;
+}
+
+.map__wrapper svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.continent {
+    fill: none;
+    stroke: #000;
+    stroke-width: 7px;
+    cursor: pointer;
+    pointer-events: all;
+}
+
+.continent:hover {
+    animation: highlightContinent 2s linear infinite;
+}
+
+@keyframes highlightContinent {
+    0% { stroke: #000;}
+    50% { stroke: #ff0000; }
+    100% { stroke: #000; }
+}
+
+.tooltip {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 5px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}

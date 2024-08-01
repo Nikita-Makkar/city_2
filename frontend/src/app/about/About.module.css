@@ -1,0 +1,15 @@
+.container {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(14, 14, 14);
+    padding: 0;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.header {
+    padding-bottom: 100px;
+}

@@ -7,7 +7,7 @@ export default function Home() {
   const [showCircle, setShowCircle] = useState(false);
 
   const circles = [
-    { top: '27%', left: '18%', label: 'Собаки' },
+    { top: '33%', left: '14%', label: 'Собаки' },
     // { top: '53%', left: '25%', label: 'Мусор' },
     // { top: '38%', left: '32%', label: 'Площадки' },
     // { top: '47%', left: '45%', label: 'Транспорт' },

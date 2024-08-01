@@ -7,7 +7,7 @@ export default function Home() {
   const [showCircle, setShowCircle] = useState(false);
 
   const circles = [
-    { top: '50px', left: '17%', label: 'Собаки' },
+    { top: '27%', left: '18%', label: 'Собаки' },
     // { top: '53%', left: '25%', label: 'Мусор' },
     // { top: '38%', left: '32%', label: 'Площадки' },
     // { top: '47%', left: '45%', label: 'Транспорт' },
@@ -25,7 +25,6 @@ export default function Home() {
   ];
 
   const handleClick = (e) => {
-    setCircleStyle({ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' });
     setShowCircle(true);
   };
 
@@ -38,15 +37,18 @@ export default function Home() {
     <div className={styles.container}>
       <h1 className={styles.header}>Главная</h1>
       <div className={styles.imageContainer}>
-        <Image
-          src="/City.png"
+        <svg viewBox="0 0 1936 1356" className={styles.svg}>
+          <image href="/City.png" width="3826" height="2685" className={styles.image} />
+        </svg>
+        {/* <Image
+         stc="/City.png"
           alt="Descriptive Alt Text"
           layout="intrinsic"
-          width={2733}
-          height={1889}
+          width={3826}
+          height={2685}
           quality={100}
           className={styles.image}
-        />
+        /> */}
         {circles.map((circle, index) => (
           <div
             key={index}
@@ -60,3 +62,16 @@ export default function Home() {
     </div >
   );
 }
+
+
+
+// import Map from '../_component/Map';
+
+// export default function Home() {
+//   return (
+//     <div>
+//       <h1>Главная</h1>
+//       <Map />
+//     </div>
+//   );
+// }

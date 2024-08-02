@@ -8,7 +8,7 @@ export default function Home() {
 
   const circles = [
     {
-      top: '98px', left: '574px', width: '161px', height: '162px', label: 'Транспорт'
+      top: '98px', left: '574px', width: '161px', height: '162px', label: 'Транспорт', url: '/transport'
     },
     {
       top: '27px', left: '425px', width: '149px', height: '148px', label: 'Знаки'

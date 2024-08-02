@@ -7,20 +7,52 @@ export default function Home() {
   const [showCircle, setShowCircle] = useState(false);
 
   const circles = [
-    { top: '33%', left: '14%', label: 'Собаки' },
-    // { top: '53%', left: '25%', label: 'Мусор' },
-    // { top: '38%', left: '32%', label: 'Площадки' },
-    // { top: '47%', left: '45%', label: 'Транспорт' },
+    {
+      top: '265px', left: '229px', width: '177px', height: '177px', label: 'Транспорт'
+    },
+    {
+      top: '265px', left: '229px', width: '177px', height: '177px', label: 'Собаки'
+    },
+    {
+      top: '265px', left: '229px', width: '177px', height: '177px', label: 'Собаки'
+    },
+
+    {
+      top: '265px', left: '229px', width: '177px', height: '177px', label: 'Собаки'
+    },
+    {
+      top: '485px', left: '299px', width: '164px', height: '163px', label: 'Мусор'
+    },
+    {
+      top: '570px', left: '464px', width: '157px', height: '158px', label: 'Площадки'
+    },
+    {
+      top: '661px', left: '619px', width: '122px', height: '123px', label: 'Свет'
+    },
+    {
+      top: '655px', left: '773px', width: '147px', height: '146px', label: 'Деревья'
+    },
+    {
+      top: '597px', left: '933px', width: '144px', height: '144px', label: 'Люки'
+    },
+    {
+      top: '542px', left: '1085px', width: '157px', height: '157px', label: 'Ремонт дороги'
+    },
+    {
+      top: '451px', left: '1214px', width: '150px', height: '150px', label: 'Аварии'
+    },
+    {
+      top: '307px', left: '1227px', width: '144px', height: '144px', label: 'Трубы'
+    },
+    {
+      top: '203px', left: '1100px', width: '155px', height: '154px', label: 'Магазин'
+    },
+    {
+      top: '132px', left: '975px', width: '144px', height: '144px', label: 'Уборка дороги'
+    },
+  
     // { top: '44%', left: '57%', label: 'Дороги' },
-    // { top: '38%', left: '69%', label: 'Магазины' },
-    // { top: '74%', left: '47%', label: 'Столб' },
     // { top: '70%', left: '39%', label: 'Парк' },
-    // { top: '62%', left: '52%', label: 'Деревья' },
-    // { top: '55%', left: '67%', label: 'Ремонт дороги' },
-    // { top: '65%', left: '72%', label: 'Люки' },
-    // { top: '51%', left: '76%', label: 'Машина' },
-    // { top: '38%', left: '78%', label: 'Трактор' },
-    // { top: '20%', left: '68%', label: 'Уборка дороги' },
     // { top: '0%', left: '48%', label: 'Дом' },
   ];
 
@@ -53,7 +85,7 @@ export default function Home() {
           <div
             key={index}
             className={styles.circle}
-            style={{ top: circle.top, left: circle.left }}
+            style={{ top: circle.top, left: circle.left, width: circle.width, height: circle.height }}
             onClick={handleClick}
             aria-label={circle.label}
           ></div>

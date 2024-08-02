@@ -37,8 +37,6 @@
 .circle {
     position: absolute;
     border-radius: 50%;
-    width: 186px;
-    height: 183px;
     background-color: rgba(255, 0, 0, 0.3);
     transition: background-color 0.3s ease;
     pointer-events: auto;
@@ -46,6 +44,6 @@
 }
 
 .circle:hover {
-    background-color: rgba(255, 0, 0, 0.75);
+    background-color: rgba(0, 0, 0, 0.75);
     /* Более насыщенный красный цвет при наведении */
 }

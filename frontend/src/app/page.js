@@ -1,10 +1,9 @@
 "use client";
-import Image from 'next/image';
 import styles from './Home.module.css';
 import { useState } from 'react';
 
 export default function Home() {
-  const [showCircle, setShowCircle] = useState(false);
+  const [hoverGroup, setHoverGroup] = useState(null);
 
   const circles = [
     {
@@ -53,23 +52,27 @@ export default function Home() {
       id: 'home', top: '0px', left: '805px', width: '200px', height: '200px', label: 'Дом'
     },
     {
-      id: 'electricity', top: '8px', left: '766px', width: '96px', height: '94px', label: 'Электричество'
+      id: 'electricity', top: '8px', left: '766px', width: '96px', height: '94px', label: 'Электричество', zindex: '10'
     },
     {
-      id: 'water', top: '113px', left: '806px', width: '90px', height: '89px', label: 'Вода'
+      id: 'water', top: '113px', left: '806px', width: '90px', height: '89px', label: 'Вода', zindex: '10'
     },
   ];
 
-  const handleClick = (e) => {
-    setShowCircle(true);
+  const handleMouseEnter = (id) => {
+    if (id === 'water') {
+      setHoverGroup('water');
+    } else if (id === 'electricity') {
+      setHoverGroup('electricity');
+    } else {
+      setHoverGroup(null);
+    }
+  };
+  const handleMouseLeave = () => {
+    setHoverGroup(null);
   };
 
-  const handleClose = () => {
-    setShowCircle(false);
-  };
-
-  const group1 = circles.filter(circle => ['home', 'electricity'].includes(circle.id));
-  const group2 = circles.filter(circle => ['home', 'water'].includes(circle.id));
+  const combinedGroups = circles.filter(circle => ['home', 'electricity', 'water'].includes(circle.id));
   const otherCircles = circles.filter(circle => !['home', 'electricity', 'water'].includes(circle.id));
 
   return (
@@ -79,46 +82,29 @@ export default function Home() {
         <svg viewBox="0 0 1936 1356" className={styles.svg}>
           <image href="/City.png" width="3826" height="2685" className={styles.image} />
         </svg>
-        {/* <Image
-         stc="/City.png"
-          alt="Descriptive Alt Text"
-          layout="intrinsic"
-          width={3826}
-          height={2685}
-          quality={100}
-          className={styles.image}
-        /> */}
- <div className={styles.circleContainer} onMouseEnter={handleClick} onMouseLeave={handleClose}>
-          {group1.map((circle, index) => (
+
+        <div
+          className={styles.circleContainer}
+          onMouseLeave={handleMouseLeave}
+        >
+          {combinedGroups.map((circle, index) => (
             <div
               key={index}
-              className={styles.circle}
-              style={{ top: circle.top, left: circle.left, width: circle.width, height: circle.height }}
-              onClick={handleClick}
+              className={`${styles.circle}
+                          ${hoverGroup === 'water' && (circle.id === 'home' || circle.id === 'water') ? styles.hover : ''}
+                          ${hoverGroup === 'electricity' && (circle.id === 'home' || circle.id === 'electricity') ? styles.hover : ''}`}
+              style={{ top: circle.top, left: circle.left, width: circle.width, height: circle.height, zIndex: circle.zindex }}
               aria-label={circle.label}
+              onMouseEnter={() => handleMouseEnter(circle.id)}
             ></div>
           ))}
         </div>
 
-        <div className={styles.circleContainer} onMouseEnter={handleClick} onMouseLeave={handleClose}>
-          {group2.map((circle, index) => (
-            <div
-              key={index}
-              className={styles.circle}
-              style={{ top: circle.top, left: circle.left, width: circle.width, height: circle.height }}
-              onClick={handleClick}
-              aria-label={circle.label}
-            ></div>
-          ))}
-        </div>
-        
-        {/* Отдельные круги */}
         {otherCircles.map((circle, index) => (
           <div
             key={index}
             className={styles.circle}
             style={{ top: circle.top, left: circle.left, width: circle.width, height: circle.height }}
-            onClick={handleClick}
             aria-label={circle.label}
           ></div>
         ))}

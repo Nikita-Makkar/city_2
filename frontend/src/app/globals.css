@@ -7,24 +7,3 @@ body {
   background: black;
   color: white;
 }
-
-header {
-  display: flex;
-  justify-content: space-between;
-  background-color: black;
-  border-bottom: 2px solid #2c2c2c;
-  padding: 20px 50px;
-}
-
-header a {
-  margin-left: 10px;
-}
-
-a {
-  text-decoration: none;
-  color: rgb(180, 180, 218);
-}
-
-a:hover {
-  text-decoration: underline;
-}

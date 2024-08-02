@@ -1,7 +1,7 @@
 .header {
     display: flex;
     justify-content: space-between;
-    background-color: black;
+    background-color: rgb(98, 149, 161);
     border-bottom: 2px solid #2c2c2c;
     padding: 20px 50px;
     align-items: center;
@@ -10,7 +10,7 @@
 .nav a {
     margin-left: 10px;
     text-decoration: none;
-    color: rgb(180, 180, 218);
+    color: rgba(0, 0, 0, 0.466);
 }
 
 .nav a:hover {

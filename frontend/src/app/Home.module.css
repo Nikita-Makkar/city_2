@@ -37,14 +37,14 @@
 .circle {
     position: absolute;
     border-radius: 50%;
-    background-color: rgba(255, 0, 0, 0.3);
+    /* background-color: rgba(255, 0, 0, 0.3); */
     transition: background-color 0.3s ease;
     pointer-events: auto;
     cursor: pointer;
 }
 
 .circle:hover {
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: rgba(255, 0, 0, 0.75);
 }
 
 .circleContainer .circle {
@@ -53,9 +53,9 @@
 }
 
 .circleContainer .circle:hover {
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: rgba(255, 0, 0, 0.75);
 }
 
 .hover {
-    background-color: rgba(0, 0, 0, 0.75) !important;
+    background-color: rgba(252, 0, 0, 0.75) !important;
 }

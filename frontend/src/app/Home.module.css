@@ -4,9 +4,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
     padding: 0;
     box-sizing: border-box;
+    overflow: hidden auto;
 }
 
 .imageContainer {
@@ -41,14 +41,14 @@
     transition: background-color 0.3s ease;
     pointer-events: auto;
     cursor: pointer;
-    mix-blend-mode: normal;
 }
 
 .circle:hover {
     background-color: rgba(0, 0, 0, 0.75);
 }
 
-.circleContainer {
+.circleContainer .circle {
+    transition: background-color 0.3s ease, opacity 0.3s ease;
     transition: background-color 0.3s ease;
 }
 

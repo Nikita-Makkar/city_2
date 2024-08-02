@@ -8,15 +8,14 @@ export default function Home() {
 
   const circles = [
     {
-      top: '265px', left: '229px', width: '177px', height: '177px', label: 'Транспорт'
+      top: '98px', left: '574px', width: '161px', height: '162px', label: 'Транспорт'
     },
     {
-      top: '265px', left: '229px', width: '177px', height: '177px', label: 'Собаки'
+      top: '27px', left: '425px', width: '149px', height: '148px', label: 'Знаки'
     },
     {
-      top: '265px', left: '229px', width: '177px', height: '177px', label: 'Собаки'
+      top: '188px', left: '406px', width: '177px', height: '178px', label: 'Горка'
     },
-
     {
       top: '265px', left: '229px', width: '177px', height: '177px', label: 'Собаки'
     },
@@ -50,10 +49,15 @@ export default function Home() {
     {
       top: '132px', left: '975px', width: '144px', height: '144px', label: 'Уборка дороги'
     },
-  
-    // { top: '44%', left: '57%', label: 'Дороги' },
-    // { top: '70%', left: '39%', label: 'Парк' },
-    // { top: '0%', left: '48%', label: 'Дом' },
+    {
+      id: 'home', top: '0px', left: '805px', width: '200px', height: '200px', label: 'Дом'
+    },
+    {
+      id: 'electricity', top: '8px', left: '766px', width: '96px', height: '94px', label: 'Электричество'
+    },
+    {
+      id: 'water', top: '113px', left: '806px', width: '90px', height: '89px', label: 'Вода'
+    },
   ];
 
   const handleClick = (e) => {
@@ -64,8 +68,11 @@ export default function Home() {
     setShowCircle(false);
   };
 
-  return (
+  const group1 = circles.filter(circle => ['home', 'electricity'].includes(circle.id));
+  const group2 = circles.filter(circle => ['home', 'water'].includes(circle.id));
+  const otherCircles = circles.filter(circle => !['home', 'electricity', 'water'].includes(circle.id));
 
+  return (
     <div className={styles.container}>
       <h1 className={styles.header}>Главная</h1>
       <div className={styles.imageContainer}>
@@ -81,7 +88,32 @@ export default function Home() {
           quality={100}
           className={styles.image}
         /> */}
-        {circles.map((circle, index) => (
+ <div className={styles.circleContainer} onMouseEnter={handleClick} onMouseLeave={handleClose}>
+          {group1.map((circle, index) => (
+            <div
+              key={index}
+              className={styles.circle}
+              style={{ top: circle.top, left: circle.left, width: circle.width, height: circle.height }}
+              onClick={handleClick}
+              aria-label={circle.label}
+            ></div>
+          ))}
+        </div>
+
+        <div className={styles.circleContainer} onMouseEnter={handleClick} onMouseLeave={handleClose}>
+          {group2.map((circle, index) => (
+            <div
+              key={index}
+              className={styles.circle}
+              style={{ top: circle.top, left: circle.left, width: circle.width, height: circle.height }}
+              onClick={handleClick}
+              aria-label={circle.label}
+            ></div>
+          ))}
+        </div>
+        
+        {/* Отдельные круги */}
+        {otherCircles.map((circle, index) => (
           <div
             key={index}
             className={styles.circle}
@@ -90,8 +122,8 @@ export default function Home() {
             aria-label={circle.label}
           ></div>
         ))}
-      </div >
-    </div >
+      </div>
+    </div>
   );
 }
 

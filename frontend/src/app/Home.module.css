@@ -30,7 +30,7 @@
     image-rendering: pixelated;
     width: 100%;
     height: auto;
-    max-width: 100%; 
+    max-width: 100%;
 
 }
 
@@ -45,5 +45,12 @@
 
 .circle:hover {
     background-color: rgba(0, 0, 0, 0.75);
-    /* Более насыщенный красный цвет при наведении */
+}
+
+.circleContainer {
+    transition: background-color 0.3s ease;
+}
+
+.circleContainer:hover .circle {
+    background-color: rgba(0, 0, 0, 0.75);
 }

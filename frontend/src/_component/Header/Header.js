@@ -1,13 +1,15 @@
 import Link from 'next/link';
-import styles from './Header.module.css'
+import styles from './Header.module.css';
 
 const Header = () => {
   return (
     <header className={styles.header}>
-      {/* <svg viewBox="0 0 1936 1356" className={styles.svg}>
-        <image href="/Gerb.png" width="3826" height="2685" className={styles.image} />
-      </svg> */}
-      <strong>Калуга</strong>
+      <div className={styles.logoContainer}>
+        <svg viewBox="0 0 2000 2300" className={styles.svg}>
+          <image href="/Gerb.png" width="2000" height="2300" className={styles.image} />
+        </svg>
+        <strong className={styles.cityName}>Калуга</strong>
+      </div>
       <nav className={styles.nav}>
         <Link href="/" className={styles.link}>Домашняя</Link>
         <Link href="/about" className={styles.link}>О проекте</Link>
@@ -17,4 +19,3 @@ const Header = () => {
 };
 
 export default Header;
-

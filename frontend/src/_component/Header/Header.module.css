@@ -7,6 +7,22 @@
     align-items: center;
 }
 
+.logoContainer {
+    display: flex;
+    align-items: center;
+}
+
+.svg {
+    width: 60px;
+    height: 70px;
+}
+
+.cityName {
+    font-size: 1.5em;
+    color: white;
+    margin-left: 20px;
+}
+
 .nav a {
     margin-left: 10px;
     text-decoration: none;

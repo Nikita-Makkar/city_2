@@ -1,6 +1,6 @@
 "use client";
 import styles from './Home.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Home() {
 
@@ -58,18 +58,25 @@ export default function Home() {
     },
   ];
 
-  const handleMouseEnter = (id) => {
-    if (id === 'water') {
-      setHoverGroup('water');
-    } else if (id === 'electricity') {
-      setHoverGroup('electricity');
-    } else {
-      setHoverGroup(null);
-    }
-  };
+  // const handleMouseEnter = (id) => {
+  //   if (id === 'water') {
+  //     setHoverGroup('water');
+  //   } else if (id === 'electricity') {
+  //     setHoverGroup('electricity');
+  //   } else {
+  //     setHoverGroup(null);
+  //   }
+  // };
 
-  const handleMouseLeave = () => {
-    setHoverGroup(null);
+  // const handleMouseLeave = () => {
+  //   setHoverGroup(null);
+  // };
+
+  const [menuActive, setMenuActive] = useState(false);
+  const [containerHeight, setContainerHeight] = useState('auto');
+
+  const toggleMenu = () => {
+    setMenuActive(prevState => !prevState); // Переключаем состояние меню
   };
 
   const handleCircleClick = (url, label) => {
@@ -80,15 +87,43 @@ export default function Home() {
     }
   };
 
-  const [hoverGroup, setHoverGroup] = useState(null);
+  useEffect(() => {
+    const updateContainerHeight = () => {
+      if (window.innerHeight <= 700 && menuActive) {
+        setContainerHeight('75vh');
+      }
+      else if (window.innerHeight <= 800 && menuActive) {
+        setContainerHeight('68vh');
+      }
+      else if (window.innerHeight <= 900 && menuActive) {
+        setContainerHeight('60vh');
+      }
+      else if (window.innerHeight <= 1000 && menuActive) {
+        setContainerHeight('50vh');
+      } else {
+        setContainerHeight('auto');
+      }
+    };
 
-  const combinedGroups = circles.filter(circle => ['home', 'electricity', 'water'].includes(circle.id));
-  const otherCircles = circles.filter(circle => !['home', 'electricity', 'water'].includes(circle.id));
+    updateContainerHeight(); // Установить высоту при монтировании компонента
+    window.addEventListener('resize', updateContainerHeight); // Обновить высоту при изменении размера окна
+
+    return () => {
+      window.removeEventListener('resize', updateContainerHeight); // Удалить обработчик при размонтировании
+    };
+  }, [menuActive]);
+
+  // const [hoverGroup, setHoverGroup] = useState(null);
+
+  // const combinedGroups = circles.filter(circle => ['home', 'electricity', 'water'].includes(circle.id));
+  // const otherCircles = circles.filter(circle => !['home', 'electricity', 'water'].includes(circle.id));
 
   return (
-    <div className={styles.container}>
+    <div
+      className={styles.container}
+    >
       <h1 className={styles.header}>Главная</h1>
-      <div className={styles.imageContainer}>
+      {/* <div className={styles.imageContainer}>
         <svg viewBox="0 0 3826 2685" className={styles.svg}>
           <image href="/City.png" width="3826" height="2685" className={styles.image} />
         </svg>
@@ -134,17 +169,44 @@ export default function Home() {
           </div>
         ))}
 
-      </div>
-      <div className={styles.menu}>
-        {circles.map((circle, index) => (
-          <div key={index} className={styles.menuCircle}>
-            <div className={styles.menuHeader} onClick={() => handleCircleClick(circle.url, circle.label)}>
-              <img src={circle.icon} alt={circle.label} className={styles.icon} />
-              <span className={styles.title}>{circle.label}</span>
-              <span className={styles.arrow}>{'►'}</span>
-            </div>
+      </div> */}
+      <div className={styles.videoContainer}>
+        {!(menuActive && window.innerWidth <= 1000) && (
+          <video className={styles.video} autoPlay loop muted playsInline>
+            <source src= '/Video/Portal.MP4' type='video/mp4' />
+            Ваш браузер не поддерживает элемент видео.
+          </video>
+        )}
+         {!(menuActive && window.innerWidth <= 1000) && (
+        <div className={styles.rightContainer}>
+          <div
+            className={`${styles.menuButton} ${menuActive ? styles.active : ''}`}
+            onClick={toggleMenu}
+          >
+            <div></div>
+            <div></div>
+            <div></div>
           </div>
-        ))}
+        </div>
+        )}
+        {menuActive && (
+          <div className={styles.menu}>
+            {(window.innerWidth <= 1000) && (
+              <div className={styles.closeButton} onClick={toggleMenu}>
+                ✕
+              </div>
+            )}
+            {circles.map((circle, index) => (
+              <div key={index} className={styles.menuCircle}>
+                <div className={styles.menuHeader} onClick={() => handleCircleClick(circle.url, circle.label)}>
+                  <img src={circle.icon} alt={circle.label} className={styles.icon} />
+                  <span className={styles.title}>{circle.label}</span>
+                  <span className={styles.arrow}>{'►'}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   )

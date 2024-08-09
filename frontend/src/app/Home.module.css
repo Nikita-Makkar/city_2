@@ -1,110 +1,209 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
-    overflow: hidden auto;
-    position: relative;
-    background:  var(--background-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  max-height: 150vh;
+  background: var(--background-color);
 }
 
 .imageContainer {
-    position: relative;
-    margin-top: 100px;
+  position: relative;
+  margin-top: 100px;
 }
 
 .svg {
-    width: 1600px;
-    height: 800px;
+  width: 1600px;
+  height: 800px;
 }
 
 .image {
-    -webkit-user-select: none;
-    margin: auto;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-    image-rendering: pixelated;
-    width: 100%;
-    height: auto;
-    max-width: 100%;
+  -webkit-user-select: none;
+  margin: auto;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
 }
 
 .circleContainer {
-    pointer-events: none;
-    transition: opacity 0.3s ease;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 
 .circle {
-    position: absolute;
-    border-radius: 50%;
-    transition: background-color 0.3s ease;
-    pointer-events: all;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(0, 0, 0);
-    font-weight: bold;
+  position: absolute;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+  pointer-events: all;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(0, 0, 0);
+  font-weight: bold;
 }
 
 .circleContainer:hover .circle {
-    background-color: blue;
+  background-color: blue;
 }
 
 .circle:hover {
-    background-color: #000;
+  background-color: #000;
 }
 
 .circleText {
-    text-align: center;
+  text-align: center;
 }
 
+
+
+
+
 .menu {
-    width: 90%;
-    max-width: 800px;
-    border: 1px solid #000000;
-    border-radius: 8px;
-    background-color: var(--outher-elements);
-    margin: 10%;
+  position: absolute;
+  width: 50%;
+  max-width: 800px;
+  border-radius: 8px;
+  background-color: var(--outher-elements);
+  margin: 10%;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: auto;
+  /* Добавляем прокрутку, если контент превышает max-height */
+  max-height: calc(100vh - 100px);
+  /* Максимальная высота меню с учетом отступа от футера */
+}
+
+.menuCircle {
+  width: 48%;
+  /* Каждый элемент занимает примерно половину ширины контейнера */
+  margin-bottom: 10px;
+  /* Отступ между строками */
 }
 
 .menuHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
 }
 
 .icon {
-    width: 10%;
-    max-width: 50px;
-    height: auto;
-    margin-right: 10px;
+  width: 10%;
+  max-width: 50px;
+  height: auto;
+  margin-right: 10px;
 }
 
 .menuHeader .title {
-    color: #000000;
-    flex-grow: 1;
+  color: #000000;
+  flex-grow: 1;
 }
 
 .menuHeader .arrow {
-    color: #000000;
-    margin-left: auto;
+  color: #000000;
+  margin-left: auto;
 }
 
-.menuContent {
-    background-color: var(--outher-elements);
+
+@media (max-width: 1000px) {
+  .menu {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    border-radius: 0;
+    max-width: none;
+    border: none;
+    max-height: calc(100vh - 100px);
+    /* Устанавливаем максимальную высоту и на маленьких экранах */
+    overflow-y: auto;
+  }
+
+
+  .closeButton {
+    position: absolute;
+    top: 1%;
+    right: 2%;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #000;
+    /* Цвет крестика */
+    z-index: 10;
+    /* Убедитесь, что кнопка находится над остальными элементами меню */
+  }
 }
 
-@media (min-width: 1200px) {
-    .menu {
-        display: none;
-    }
+
+
+
+
+
+.videoContainer {
+  position: relative;
+  max-width: 1280px;
+  max-height: 912px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50px;
+  padding-bottom: 70px;
 }
-@media (max-width: 1200px) {
-    .imageContainer {
-        display: none;
-    }
+
+.video {
+  width: 100%;
+  height: auto;
+  /* Поддерживает соотношение сторон видео */
+  object-fit: cover;
+  /* Заполняет контейнер без искажений */
+}
+
+
+.rightContainer {
+  position: absolute;
+  top: 70px;
+  right: 20px;
+  display: none;
+  /* Обеспечивает, что кнопка будет выше видео */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menuButton {
+  width: 40px;
+  height: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.menuButton div {
+  width: 100%;
+  height: 4px;
+  background-color: #000;
+  transition: all 0.3s ease;
+}
+
+.menuButton.active div:nth-child(1) {
+  transform: translateY(13px) rotate(45deg);
+}
+
+.menuButton.active div:nth-child(2) {
+  opacity: 0;
+}
+
+.menuButton.active div:nth-child(3) {
+  transform: translateY(-13px) rotate(-45deg);
 }
